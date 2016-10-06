@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.soap.formacion.ipartek.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.soap.formacion.ipartek.com" xmlns:intf="http://service.soap.formacion.ipartek.com" xmlns:tns1="http://soap.formacion.ipartek.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.soap.formacion.ipartek.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://soap.formacion.ipartek.com"/>
+   <element name="getVcard">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="id_empleado" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getVcardResponse">
+    <complexType>
+     <sequence>
+      <element name="getVcardReturn" type="tns1:Empleado"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://soap.formacion.ipartek.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Empleado">
+    <sequence>
+     <element name="apellido" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="idDepartamento" type="xsd:int"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+     <element name="salario" type="xsd:double"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getVcardRequest">
+
+      <wsdl:part element="impl:getVcard" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getVcardResponse">
+
+      <wsdl:part element="impl:getVcardResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="VcardService">
+
+      <wsdl:operation name="getVcard">
+
+         <wsdl:input message="impl:getVcardRequest" name="getVcardRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getVcardResponse" name="getVcardResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="VcardServiceSoapBinding" type="impl:VcardService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getVcard">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getVcardRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getVcardResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="VcardServiceService">
+
+      <wsdl:port binding="impl:VcardServiceSoapBinding" name="VcardService">
+
+         <wsdlsoap:address location="http://localhost:8080/SOAPVcard/services/VcardService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
